@@ -1,0 +1,2 @@
+Day 1:
+starting with file structure and now dataset creation

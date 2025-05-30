@@ -1,0 +1,34 @@
+version: "3.8"
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.0
+    environment:
+      - discovery.type=single-node
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+    ports:
+      - "9200:9200"
+  redis:
+    image: redis:6-alpine
+    ports:
+      - "6379:6379"
+  api:
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile
+    volumes:
+      - ../data:/app/data
+    ports:
+      - "8000:8000"
+    depends_on:
+      - elasticsearch
+      - redis
+  frontend:
+    image: python:3.10-slim
+    working_dir: /app
+    volumes:
+      - ../frontend:/app
+    command: streamlit run app.py --server.port 8501 --server.address 0.0.0.0
+    ports:
+      - "8501:8501"
+    depends_on:
+      - api

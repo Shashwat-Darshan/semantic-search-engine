@@ -1,2 +1,24 @@
 Day 1:
 starting with file structure and now dataset creation
+
+day 2:
+preprocessing compelete
+📁 processed/
+  📁 msmarco/
+    📄 dataset.md
+    📄 sessions_cleaned.csv
+    📄 sessions_cleaned.json
+    📄 train_subset.csv
+    📄 Usefulness_processed.csv
+  📁 multifc/
+    📄 claims_processed.csv
+    📄 claims_processed.json
+  📁 openalex/
+    📄 openalex_processed.csv
+    📄 openalex_processed.json
+  📁 wikipedia/
+    📄 dataset.md
+    📄 wikipedia_combined.csv
+    📄 wikipedia_combined.jsonl
+but files header are different
+

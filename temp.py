@@ -1,26 +1,15 @@
-import os
+from pathlib import Path
+import json
+base_dir = Path("data/processed")
+def print_directory_structure(directory, indent=""):
+    # Print current directory
+    print(f"{indent}📁 {directory.name}/")
+    
+    # Iterate through all items in the directory
+    for item in sorted(directory.iterdir()):
+        if item.is_file() :
+            print(f"{indent}  📄 {item.name}")
+        elif item.is_dir() :
+            print_directory_structure(item, indent + "  ")
 
-# Create the basic directory structure
-base_dirs = [
-    "scripts",
-    "data/raw",
-    "data/processed"
-]
-
-for d in base_dirs:
-    os.makedirs(d, exist_ok=True)
-
-# Create placeholder script files
-script_files = [
-    "scripts/download_wikipedia.py",
-    "scripts/download_openalex.py",
-    "scripts/download_multifc.py",
-    "scripts/preprocess_data.py",
-    "scripts/load_datasets.py"
-]
-
-for file_path in script_files:
-    with open(file_path, 'w') as f:
-        f.write("# Placeholder for {}\n".format(os.path.basename(file_path)))
-
-"Structure and placeholder scripts created."
+print_directory_structure(base_dir)
